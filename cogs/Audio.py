@@ -97,6 +97,34 @@ class Audio(commands.Cog):
 
 
     #############################
+    # Nice command
+    #############################
+    @commands.command(help='$nice', aliases=['Nice','NICE'])
+    async def nice(self, ctx):
+
+        mp3_path = os.path.join(dir_path, 'audio/click_nice.mp3')
+
+        channel = ctx.author.voice.channel
+        time.sleep(.5)
+
+        vc = await channel.connect()
+        vc.play(discord.FFmpegPCMAudio(mp3_path), after=lambda e: print('done', e))
+        await asyncio.sleep(2.5)
+        await vc.disconnect()
+
+
+    # on_error
+    @nice.error
+    async def nice_handler(self, ctx, error):
+        time.sleep(.5)
+        async with ctx.typing():
+            await asyncio.sleep(random.uniform(.5, 1))
+        # if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send(file=discord.File(os.path.join(dir_path, 'gifs/NoPower.gif')))
+        await ctx.send("You are not in a voice channel...")
+
+
+    #############################
     # Wii Sports command
     #############################
     @commands.command(help='$wii', aliases=['Wii', 'WII'])
