@@ -125,7 +125,7 @@ class Audio(commands.Cog):
 
 
     #############################
-    # Nice command
+    # Finland command
     #############################
     @commands.command(help='$finland', aliases=['Finland','FINLAND'])
     async def finland(self, ctx):
@@ -144,6 +144,34 @@ class Audio(commands.Cog):
     # on_error
     @finland.error
     async def finland_handler(self, ctx, error):
+        time.sleep(.5)
+        async with ctx.typing():
+            await asyncio.sleep(random.uniform(.5, 1))
+        # if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send(file=discord.File(os.path.join(dir_path, 'gifs/NoPower.gif')))
+        await ctx.send("You are not in a voice channel...")
+
+
+    #############################
+    # Hello There command
+    #############################
+    @commands.command(help='$hello', aliases=['hellothere','Hello'])
+    async def hello(self, ctx):
+
+        mp3_path = os.path.join(dir_path, 'audio/HelloThere.mp3')
+
+        channel = ctx.author.voice.channel
+        time.sleep(.5)
+
+        vc = await channel.connect()
+        vc.play(discord.FFmpegPCMAudio(mp3_path), after=lambda e: print('done', e))
+        await asyncio.sleep(1.5)
+        await vc.disconnect()
+
+
+    # on_error
+    @hello.error
+    async def hello_handler(self, ctx, error):
         time.sleep(.5)
         async with ctx.typing():
             await asyncio.sleep(random.uniform(.5, 1))
