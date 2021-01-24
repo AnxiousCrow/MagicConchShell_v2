@@ -256,7 +256,7 @@ class Audio(commands.Cog):
         mp3_path = os.path.join(wii_audio, rand_mp3)
 
         vc.play(discord.FFmpegPCMAudio(mp3_path), after=lambda e: print('done', e))
-        await asyncio.sleep(1.5)
+        await asyncio.sleep(1.75)
         await vc.disconnect()
 
 
