@@ -239,5 +239,35 @@ class Audio(commands.Cog):
         await ctx.send(file=discord.File(os.path.join(dir_path, 'gifs/NoPower.gif')))
         await ctx.send("You are not in a voice channel...")
 
+
+    #############################
+    # Navi command
+    #############################
+    @commands.command(help='$navi', aliases=['Navi', 'NAVI'])
+    async def navi(self, ctx):
+
+        channel = ctx.author.voice.channel
+        time.sleep(.5)
+        vc = await channel.connect()
+
+        # Get random Wii mp3
+        wii_audio = os.path.join(dir_path, 'audio/Navi/')
+        rand_mp3 = random.choice(os.listdir(wii_audio))
+        mp3_path = os.path.join(wii_audio, rand_mp3)
+
+        vc.play(discord.FFmpegPCMAudio(mp3_path), after=lambda e: print('done', e))
+        await asyncio.sleep(2)
+        await vc.disconnect()
+
+
+    # on_error
+    @navi.error
+    async def navi_handler(self, ctx, error):
+        time.sleep(.5)
+        async with ctx.typing():
+            await asyncio.sleep(random.uniform(.5, 1))
+        await ctx.send(file=discord.File(os.path.join(dir_path, 'gifs/NoPower.gif')))
+        await ctx.send("You are not in a voice channel...")
+
 def setup(client):
     client.add_cog(Audio(client))
