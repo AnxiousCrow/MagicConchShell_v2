@@ -24,8 +24,11 @@ class Audio(commands.Cog):
         time.sleep(.5)
 
         vc = await channel.connect()
-        vc.play(discord.FFmpegPCMAudio(mp3_path), after=lambda e: print('done', e))
-        await asyncio.sleep(2.5)
+        vc.play(discord.FFmpegPCMAudio(mp3_path))
+
+        while vc.is_playing():
+            await asyncio.sleep(.5)
+
         await vc.disconnect()
 
 
@@ -52,8 +55,11 @@ class Audio(commands.Cog):
         time.sleep(.5)
 
         vc = await channel.connect()
-        vc.play(discord.FFmpegPCMAudio(mp3_path), after=lambda e: print('done', e))
-        await asyncio.sleep(6.5)
+        vc.play(discord.FFmpegPCMAudio(mp3_path))
+
+        while vc.is_playing():
+            await asyncio.sleep(.5)
+
         await vc.disconnect()
 
 
@@ -80,8 +86,11 @@ class Audio(commands.Cog):
         time.sleep(.5)
 
         vc = await channel.connect()
-        vc.play(discord.FFmpegPCMAudio(mp3_path), after=lambda e: print('done', e))
-        await asyncio.sleep(2)
+        vc.play(discord.FFmpegPCMAudio(mp3_path))
+
+        while vc.is_playing():
+            await asyncio.sleep(.5)
+
         await vc.disconnect()
 
 
@@ -108,8 +117,11 @@ class Audio(commands.Cog):
         time.sleep(.5)
 
         vc = await channel.connect()
-        vc.play(discord.FFmpegPCMAudio(mp3_path), after=lambda e: print('done', e))
-        await asyncio.sleep(2.5)
+        vc.play(discord.FFmpegPCMAudio(mp3_path))
+
+        while vc.is_playing():
+            await asyncio.sleep(.5)
+
         await vc.disconnect()
 
 
@@ -136,8 +148,11 @@ class Audio(commands.Cog):
         time.sleep(.5)
 
         vc = await channel.connect()
-        vc.play(discord.FFmpegPCMAudio(mp3_path), after=lambda e: print('done', e))
-        await asyncio.sleep(7.5)
+        vc.play(discord.FFmpegPCMAudio(mp3_path))
+
+        while vc.is_playing():
+            await asyncio.sleep(.5)
+
         await vc.disconnect()
 
 
@@ -164,8 +179,11 @@ class Audio(commands.Cog):
         time.sleep(.5)
 
         vc = await channel.connect()
-        vc.play(discord.FFmpegPCMAudio(mp3_path), after=lambda e: print('done', e))
-        await asyncio.sleep(1.5)
+        vc.play(discord.FFmpegPCMAudio(mp3_path))
+
+        while vc.is_playing():
+            await asyncio.sleep(.5)
+
         await vc.disconnect()
 
 
@@ -195,8 +213,11 @@ class Audio(commands.Cog):
         rand_mp3 = random.choice(os.listdir(wii_audio))
         mp3_path = os.path.join(wii_audio, rand_mp3)
 
-        vc.play(discord.FFmpegPCMAudio(mp3_path), after=lambda e: print('done', e))
-        await asyncio.sleep(3)
+        vc.play(discord.FFmpegPCMAudio(mp3_path))
+
+        while vc.is_playing():
+            await asyncio.sleep(.5)
+
         await vc.disconnect()
 
 
@@ -225,8 +246,11 @@ class Audio(commands.Cog):
         rand_mp3 = random.choice(os.listdir(risitas_audio))
         mp3_path = os.path.join(risitas_audio, rand_mp3)
 
-        vc.play(discord.FFmpegPCMAudio(mp3_path), after=lambda e: print('done', e))
-        await asyncio.sleep(4.5)
+        vc.play(discord.FFmpegPCMAudio(mp3_path))
+
+        while vc.is_playing():
+            await asyncio.sleep(.5)
+
         await vc.disconnect()
 
 
@@ -255,8 +279,11 @@ class Audio(commands.Cog):
         rand_mp3 = random.choice(os.listdir(wii_audio))
         mp3_path = os.path.join(wii_audio, rand_mp3)
 
-        vc.play(discord.FFmpegPCMAudio(mp3_path), after=lambda e: print('done', e))
-        await asyncio.sleep(1.75)
+        vc.play(discord.FFmpegPCMAudio(mp3_path))
+
+        while vc.is_playing():
+            await asyncio.sleep(.5)
+
         await vc.disconnect()
 
 
@@ -271,3 +298,4 @@ class Audio(commands.Cog):
 
 def setup(client):
     client.add_cog(Audio(client))
+
