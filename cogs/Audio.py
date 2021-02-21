@@ -11,7 +11,7 @@ class Audio(commands.Cog):
 
     def __init__(self, client):
         self.client = client
-    
+
     #############################
     # sprite cranberry command
     #############################
@@ -295,6 +295,37 @@ class Audio(commands.Cog):
             await asyncio.sleep(random.uniform(.5, 1))
         await ctx.send(file=discord.File(os.path.join(dir_path, 'gifs/NoPower.gif')))
         await ctx.send("You are not in a voice channel...")
+
+
+    #############################
+    # garbage command
+    #############################
+    @commands.command(help='$garbage', aliases=['GARBAGE', 'garb', 'g'])
+    async def garbage(self, ctx):
+
+        mp3_path = os.path.join(dir_path, 'audio/garbage.mp3')
+
+        channel = ctx.author.voice.channel
+        time.sleep(.5)
+
+        vc = await channel.connect()
+        vc.play(discord.FFmpegPCMAudio(mp3_path))
+
+        while vc.is_playing():
+            await asyncio.sleep(.5)
+
+        await vc.disconnect()
+
+
+    # on_error
+    @garbage.error
+    async def garbage_handler(self, ctx, error):
+        time.sleep(.5)
+        async with ctx.typing():
+            await asyncio.sleep(random.uniform(.5, 1))
+        await ctx.send(file=discord.File(os.path.join(dir_path, 'gifs/NoPower.gif')))
+        await ctx.send("You are not in a voice channel...")
+
 
 def setup(client):
     client.add_cog(Audio(client))
